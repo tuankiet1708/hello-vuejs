@@ -68,3 +68,25 @@ var app7 = new Vue({
       ]
     }
 })
+
+// Computed Properties and Watchers
+var app8 = new Vue({
+    el: '#app-8',
+    data: {
+      message: 'Hello'
+    },
+    methods: {
+        reverseMessageMethod: function () {
+            console.log('run reverseMessageMethod');
+            return this.message.split('').reverse().join('')
+        }
+    },
+    computed: {
+        // a computed getter
+        reversedMessage: function () {
+            console.log('run reversedMessage');
+            // `this` points to the vm instance
+            return this.message.split('').reverse().join('')
+        }
+    }
+})
