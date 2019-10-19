@@ -133,3 +133,25 @@ var watchExampleVM = new Vue({
       }
     }
 })
+
+// Conditional Rendering
+var conditionalRendering = new Vue({
+  el: "#conditional-rendering",
+  data: {
+    random: 0
+  }
+})
+
+// Control reusable elements
+var reusableElements = new Vue({
+  el: "#control-reusable-elements",
+  data: {
+    loginType: "username"
+  },
+  methods: {
+    toggle: function(evt) {
+      console.log("toggle", evt);
+      this.loginType = this.loginType === "username" ? "email" : "username"
+    }
+  }
+})

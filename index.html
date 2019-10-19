@@ -79,8 +79,36 @@
                 <input v-model="question">
             </p>
             <p>{{ answer }}</p>
+        </div>        
+
+        <!-- Conditional Rendering -->
+        <h2>Conditional Rendering</h2>
+        <div id="conditional-rendering">
+            <template v-if="(random = Math.random()) > 0.5">
+                <div>Now you see me with random() = {{random}} > 0.5</div>
+            </template>
+            <template v-else-if="random > 0.3">
+                <div>Now you see me with random() = {{random}} > 0.3</div>
+            </template>
+            <template v-else>
+                <div>Now you see me with random() = {{random}} <= 0.3</div>
+            </template>
         </div>
-        
+
+        <!-- Controlling Reusable Elements with key -->
+        <h2>Controlling Reusable Elements with key</h2>
+        <div id="control-reusable-elements">
+            <template v-if="loginType === 'username'">
+                <label>Username</label>
+                <input placeholder="Enter your username" key="username-input">
+            </template>
+            <template v-else>
+                <label>Email</label>
+                <input placeholder="Enter your email address" key="email-input">
+            </template>
+            <button @click="toggle">toggle login type</button>
+        </div>
+
         <script src="index.js"></script>
     </body>
 </html>
