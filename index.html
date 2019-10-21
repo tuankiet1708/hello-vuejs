@@ -8,6 +8,7 @@
         <!-- gives you the freedom to use what you're familiar with.      -->
         <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     </head>
     <body>        
         <!-- Declarative Rendering -->
@@ -132,6 +133,62 @@
             </ul>
         </div>
 
+        <!-- Event Handling -->
+        <h2>Event Handling</h2>
+        <div id="listening-to-events">
+            <button @click="counter += 1">Add 1</button>
+            <p>The button above has been clicked {{ counter }} times.</p>
+        </div>
+
+        <!-- Methods Event Handlers -->
+        <h2>Methods Event Handlers</h2>
+        <div id="method-event-handlers">
+            <!-- `greet` is the name of a method defined below -->
+            <button @click="greet">Greet</button>
+        </div>
+
+        <div id="method-in-event-handlers">
+            <button v-on:click="say('hi')">Say hi</button>
+            <button v-on:click="say('what')">Say what</button>
+            <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+                Submit
+            </button>
+        </div>
+
+        <!-- Event Modifiers -->
+        <h2>Event Modifiers</h2>
+        <div id="event-modifiers">
+            <!-- the click event's propagation will be stopped -->
+            <a v-on:click.stop="doThis">click.stop</a>
+
+            <!-- the submit event will no longer reload the page -->
+            <form v-on:submit.prevent="onSubmit">
+                <input type="text" value="Input Text" name="input"/>
+                <button type="submit">Submit</button>
+            </form>
+
+            <!-- modifiers can be chained -->
+            <a v-on:click.stop.prevent="doThat">click.stop.prevent</a>
+
+            <!-- just the modifier -->
+            <form v-on:submit.prevent="">
+                <input type="text" value="Input Text" name="input" v-on:keyup.enter="onEnter"/>
+                <button type="submit">Submit</button>
+            </form>
+
+            <!-- use capture mode when adding the event listener -->
+            <!-- i.e. an event targeting an inner element is handled here before being handled by that element -->
+            <div v-on:click.capture="doThis">click.capture</div>
+
+            <!-- only trigger handler if event.target is the element itself -->
+            <!-- i.e. not from a child element -->
+            <div v-on:click.self="doThat">click.self</div>
+
+            <!-- the click event will be triggered at most once -->
+            <a v-on:click.once="doThis">click.once</a>
+        </div>
+
+        <script src="services.js"></script>
         <script src="index.js"></script>
     </body>
 </html>

@@ -197,3 +197,75 @@ new Vue({
     }
   }
 })
+
+// Event Handling
+new Vue({
+  el: "#listening-to-events",
+  data: {
+    counter: 0
+  }
+})
+
+var exampleMethodEventHandlers = new Vue({
+  el: '#method-event-handlers',
+  data: {
+    name: 'Vue.js'
+  },
+  // define methods under the `methods` object
+  methods: {
+    greet: function (event) {
+      // `this` inside methods points to the Vue instance
+      alert('Hello ' + this.name + '!')
+      // `event` is the native DOM event
+      if (event) {
+        alert(event.target.tagName)
+      }
+    }
+  }
+})
+
+// you can invoke methods in JavaScript too
+// exampleMethodEventHandlers.greet() // => 'Hello Vue.js!'
+
+new Vue({
+  el: '#method-in-event-handlers',
+  methods: {
+    say: function (message) {
+      alert(message)
+    },
+    warn: function (message, event) {
+      // now we have access to the native event
+      if (event) event.preventDefault()
+      alert(message)
+    }
+  }
+})
+
+new Vue({
+  el: "#event-modifiers",
+  methods: {
+    doThat: function (event) {
+      console.log(event);
+      if (event) {
+        alert(event.target.innerHTML)
+      }
+    },
+    doThis: function (event) {
+      console.log(event);
+      if (event) {
+        alert(event.target.innerHTML)
+      }
+    },
+    onSubmit: function(event) {
+      var data = serialize(event.target);
+      // var data = $(event.target).serialize();
+      console.log(data);
+    },
+    onEnter: function(event) {
+      console.log(event);
+      if (event) {
+        alert(event.target.value)
+      }
+    }
+  }
+})
