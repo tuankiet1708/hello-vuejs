@@ -188,6 +188,33 @@
             <a v-on:click.once="doThis">click.once</a>
         </div>
 
+        <!-- Component Basics -->
+        <h2>Component Basics</h2> 
+        <div id="blog-post">
+            <custom-input
+                v-bind:value="searchText"
+                v-on:input="searchText = $event"
+            ></custom-input>
+            <!-- <custom-input v-model="searchText"></custom-input> -->
+            {{searchText}}
+            <div :style="{ fontSize: postFontSize + 'em' }">
+                <blog-post
+                    v-for="post in posts"
+                    v-bind:key="post.id"
+                    v-bind:post="post"
+                    v-on:enlarge-text="postFontSize += $event"
+                ></blog-post>
+            </div>
+        </div>
+
+        <h2>Content Distribution with Slots</h2>
+        <div id="slots-demo">
+            <alert-box>
+                Something bad happened.
+            </alert-box>
+        </div>
+        
+
         <script src="services.js"></script>
         <script src="index.js"></script>
     </body>
