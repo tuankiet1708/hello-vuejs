@@ -213,6 +213,22 @@
                 Something bad happened.
             </alert-box>
         </div>
+
+        <!-- Dynamic Components -->
+        <h2>Dynamic Components</h2>
+        <div id="dynamic-component-demo" class="demo">
+            <button
+              v-for="tab in tabs"
+              v-bind:key="tab"
+              v-bind:class="['tab-button', { active: currentTab === tab }]"
+              v-on:click="currentTab = tab"
+            >{{ tab }}</button>
+          
+            <component
+              v-bind:is="currentTabComponent"
+              class="tab"
+            ></component>
+        </div>
         
 
         <script src="services.js"></script>
